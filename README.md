@@ -76,15 +76,22 @@ npm run serve
 El frontend estará en: [http://localhost:8080](http://localhost:8080)
 
 ---
-## (Opcional) Cómo cargar la base de datos con Postman
 
-1. Abre Postman
+## (Opcional) Cómo cargar la base de datos con DBeaver
 
-2. Importa un Workspace
+1. Abre DBeaver
 
-3. Arrastra el archivo "carga_personajes.postman_collection" de la carpeta pruebas_Postman
+2. Accede a la base de datos `litenotes` (localhost, puerto 3306, user: `user`, password: `password`)
 
-4. Corre el Workspace
+3. Haz clic derecho sobre la tabla `notes` → **Import Data**
+
+4. Selecciona **CSV** y escoger el archivo "personajes_para_cargar.csv" de la carpeta pruebas_Postman
+
+5. Mapea las columnas `title` y `content`, y opcionalmente `created_at` / `updated_at` si tu CSV los tiene (formato: `YYYY-MM-DD HH:MM:SS`)
+
+6. Ejecuta la importación y revisa que los datos se vean en la tabla `notes`.
+
+> También puedes hacer inserciones manuales en la tabla desde DBeaver si solo necesitas cargar unos pocos registros de prueba.
 
 ---
 
