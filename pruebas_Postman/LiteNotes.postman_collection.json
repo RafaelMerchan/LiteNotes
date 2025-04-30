@@ -1,0 +1,122 @@
+{
+  "info": {
+    "name": "LiteNotes API (Laravel 12)",
+    "_postman_id": "e77d7e74-c826-4c38-91cb-f27908f3fa7e",
+    "description": "CRUD para notas sin autenticación en Laravel 12 con ID dinámico",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar todas las notas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/notes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "notes"]
+        }
+      }
+    },
+    {
+      "name": "Crear una nota",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Nota desde Postman\",\n    \"content\": \"Contenido generado dinámicamente.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/notes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "notes"]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();",
+              "pm.collectionVariables.set(\"noteId\", jsonData.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ver nota específica",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/notes/{{noteId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "notes", "{{noteId}}"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar nota",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Nota actualizada\",\n    \"content\": \"Este contenido fue modificado automáticamente.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/notes/{{noteId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "notes", "{{noteId}}"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar nota",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/notes/{{noteId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "notes", "{{noteId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.collectionVariables.unset(\"noteId\");"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ]
+}

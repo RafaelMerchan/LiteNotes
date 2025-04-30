@@ -12,9 +12,10 @@
 
 ```
 litenotes/
-├── backend/    # Proyecto Laravel + Docker
-├── frontend/   # Proyecto Vue.js
-└── README.md   # Este archivo
+├── backend/            # Proyecto Laravel + Docker
+├── frontend/           # Proyecto Vue.js
+├── pruebas_Postman/    # Pruebas de Postman para cargar base de datos y probar APIs
+└── README.md           # Este archivo
 ```
 
 ---
@@ -73,6 +74,17 @@ npm run serve
 ```
 
 El frontend estará en: [http://localhost:8080](http://localhost:8080)
+
+---
+## (Opcional) Cómo cargar la base de datos con Postman
+
+1. Abre Postman
+
+2. Importa un Workspace
+
+3. Arrastra el archivo "carga_personajes.postman_collection" de la carpeta pruebas_Postman
+
+4. Corre el Workspace
 
 ---
 
