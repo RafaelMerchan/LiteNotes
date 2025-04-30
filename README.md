@@ -14,7 +14,7 @@
 litenotes/
 ├── backend/            # Proyecto Laravel + Docker
 ├── frontend/           # Proyecto Vue.js
-├── pruebas_Postman/    # Pruebas de Postman para cargar base de datos y probar APIs
+├── pruebas_Postman/    # Pruebas de Postman para probar APIs y un archivo csv para cargar la base de datos
 └── README.md           # Este archivo
 ```
 
