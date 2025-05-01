@@ -72,8 +72,8 @@ export default {
       axios.get(`http://localhost:8000/api/notes?page=${page}`)
         .then(response => {
           this.notes = response.data.data
-          this.currentPage = response.data.current_page
-          this.lastPage = response.data.last_page
+          this.currentPage = response.data.meta.current_page
+          this.lastPage = response.data.meta.last_page
         })
         .catch(error => {
           console.error('Error al cargar notas:', error)
