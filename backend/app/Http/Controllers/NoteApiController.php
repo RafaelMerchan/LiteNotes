@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use App\Http\Resources\NoteResource;
 
 
 class NoteApiController extends Controller
 {
     public function index()
     {
-        return Note::paginate(5);
+        return NoteResource::collection(Note::paginate(5));
     }
 
     public function store(Request $request)
