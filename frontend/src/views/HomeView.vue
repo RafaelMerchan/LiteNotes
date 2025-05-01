@@ -9,7 +9,15 @@
         >
           + New note
         </router-link>
-
+        <div class="mb-4 text-right text-gray-700 text-sm">
+          <span v-if="user">👋 Hola, {{ user.name }}</span>
+        </div>
+        <button
+          @click="logout"
+          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-400"
+        >
+          Cerrar sesión
+        </button>
 
       </div>
 
@@ -47,16 +55,25 @@ export default {
     return {
       notes: [],
       currentPage: 1,
-      lastPage: 1
+      lastPage: 1,
+      user: null
     }
   },
   methods: {
+    async fetchUser() {
+      try {
+        const response = await axios.get('/user')
+        this.user = response.data
+      } catch (e) {
+        console.error('No se pudo cargar el usuario')
+      }
+    },
     fetchNotes(page = 1) {
       axios.get(`http://localhost:8000/api/notes?page=${page}`)
         .then(response => {
           this.notes = response.data.data
-          this.currentPage = response.data.current_page
-          this.lastPage = response.data.last_page
+          this.currentPage = response.data.meta.current_page
+          this.lastPage = response.data.meta.last_page
         })
         .catch(error => {
           console.error('Error al cargar notas:', error)
@@ -73,9 +90,20 @@ export default {
     formatDate(dateString) {
       const date = new Date(dateString)
       return date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+    },
+    async logout() {
+      try {
+        await axios.post('/logout')
+      } catch (e) {
+        console.warn('Ya estabas desconectado o el token expiró')
+      } finally {
+        localStorage.removeItem('token')
+        this.$router.push('/login')
+      }
     }
   },
   mounted() {
+    this.fetchUser()
     this.fetchNotes()
   }
 }
