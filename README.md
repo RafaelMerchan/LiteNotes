@@ -67,6 +67,38 @@ El frontend estará en: [http://localhost:8080](http://localhost:8080)
 
 ---
 
+
+---
+
+## 📚 Documentación de la API (Swagger)
+
+La API REST de LiteNotes está documentada con **Swagger UI**, accesible en:
+
+```
+http://localhost:8000/api/documentation
+```
+
+### ¿Qué incluye?
+- Endpoints documentados: `login`, `register`, `logout`, `GET/POST/PUT/DELETE /api/notes`
+- Autenticación con token tipo **Bearer Sanctum**
+- Posibilidad de probar cada endpoint con el botón **Try it out**
+
+### ¿Cómo regenerar la documentación?
+
+Si haces cambios en los controladores o anotaciones, ejecuta:
+
+```bash
+docker compose exec app php artisan l5-swagger:generate
+```
+
+### ¿Cómo autorizarme?
+
+1. Ve al botón **Authorize** en Swagger UI.
+2. Pega tu token Sanctum con formato:  
+   `Bearer 1|xxxxxxxxxxxxxxxxxxxxxxxxx`
+3. Ejecuta los endpoints protegidos sin errores 401.
+
+
 ## 📝 Licencia
 
 Este proyecto fue desarrollado por Rafael Merchán como parte de sus prácticas y aprendizaje.
